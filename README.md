@@ -39,6 +39,8 @@ I have chosen these features because they are some of the core functions of any 
 
 - Display 'Basket is empty' message when there are no items in the basket
 - Add a custom amount of the same item
+- Remove a custom amount of the same item from the basket
+- Remove all items from a basket
 
 ## Design / Architecture considerations
 _Which browsers should be supported?_

@@ -39,6 +39,18 @@ export default class Main extends React.Component {
             <Button color="success" block onClick={ pay }>Pay</Button>
           </Col>
         </Row>
+        <h3>Instructions</h3>
+        <ul>
+          <li>You can select one or more items to be added to the basket by clicking on a 'Select' button.</li>
+          <li>You can remove a single item from the basket by clicking on 'Remove' button.</li>
+          <ul>
+            <li>You can click 'Pay' to start the payment process.</li>
+            <li>If you click on 'Cancel' or anywhere else the payment will be canceled and nothing will be changed.</li>
+            <li>If you click on 'Confirm' button all items will be removed from the basket.</li>
+          </ul>
+          <li>Apps state is persisted to local storage.</li>
+        </ul>
+        <p><a href="https://github.com/DeividasK/online-vending-machine">Project repository</a> <small>(includes reasoning behind technology choices)</small></p>
 
         <Modal isOpen={ modal } toggle={ cancelPayment }>
           <ModalHeader toggle={ cancelPayment }>Payment provider</ModalHeader>
