@@ -1,22 +1,10 @@
-export default function reducer(state = {
-    list: [
-      { id: 1, name: 'Mars', price: 3.50 },
-      { id: 2, name: 'Snickers', price: 3.50 },
-      { id: 3, name: 'Twix', price: 4.50 },
-      { id: 4, name: 'Bounty', price: 3.50 },
-      { id: 5, name: 'Tupla', price: 2.50 },
-    ],
-    basket: [
-      { id: 1, name: 'Mars', price: 3.50, count: 1 },
-      { id: 2, name: 'Snickers', price: 3.50, count: 2 },
-      { id: 3, name: 'Twix', price: 4.50, count: 1 },
-    ],
-  }, action) {
-
-  let newState = { list: state.list.slice(), basket: state.basket.slice() }
+export default function reducer(state, action) {
+  let newState
 
   switch (action.type) {
     case 'SELECT_ITEM':
+      newState = { ...state, list: state.list.slice(), basket: state.basket.slice() }
+
       // Check if item is already in a basket
       let basketIndex = newState.basket.map(function(e) { return e.id }).indexOf(action.payload)
 
@@ -30,10 +18,32 @@ export default function reducer(state = {
       break
 
     case 'REMOVE_ITEM':
+      newState = { ...state, basket: state.basket.slice() }
       let index = newState.basket.map(function(e) { return e.id }).indexOf(action.payload)
       newState.basket.splice(index, 1)
       break
+
+    default:
+      let history = localStorage.getItem('items')
+      let defaultValues = {
+        list: [
+          { id: 1, name: 'Mars', price: 3.50 },
+          { id: 2, name: 'Snickers', price: 3.50 },
+          { id: 3, name: 'Twix', price: 4.50 },
+          { id: 4, name: 'Bounty', price: 3.50 },
+          { id: 5, name: 'Tupla', price: 2.50 },
+        ],
+        basket: [
+          { id: 1, name: 'Mars', price: 3.50, count: 1 },
+          { id: 2, name: 'Snickers', price: 3.50, count: 2 },
+          { id: 3, name: 'Twix', price: 4.50, count: 1 },
+        ],
+      }
+
+      newState = (history === null) ? defaultValues : JSON.parse(history)
   }
+
+  localStorage.setItem('items', JSON.stringify(newState))
 
   return newState
 }
