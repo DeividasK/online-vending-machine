@@ -14,7 +14,6 @@ function config (env = {}) {
   	entry: [ './app/index.js' ],
   	output: {
   		path: __dirname,
-  		publicPath: '/',
   		filename: 'index.js'
   	},
   	module: {
