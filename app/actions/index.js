@@ -8,7 +8,3 @@ export function selectItem(itemId) {
 export function removeItem(itemId) {
   dispatch({ type: 'REMOVE_ITEM', payload: itemId })
 }
-
-export function pay() {
-  dispatch({ type: 'PAY' })
-}

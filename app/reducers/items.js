@@ -23,6 +23,18 @@ export default function reducer(state, action) {
       newState.basket.splice(index, 1)
       break
 
+    case 'PAYMENT_START':
+      newState = { ...state, modal: true }
+      break
+
+    case 'PAYMENT_CANCEL':
+      newState = { ...state, modal: false }
+      break
+
+    case 'PAYMENT_CONFIRM':
+      newState = { ...state, basket: [], modal: false }
+      break
+
     default:
       let history = localStorage.getItem('items')
       let defaultValues = {
@@ -38,9 +50,10 @@ export default function reducer(state, action) {
           { id: 2, name: 'Snickers', price: 3.50, count: 2 },
           { id: 3, name: 'Twix', price: 4.50, count: 1 },
         ],
+        modal: false
       }
 
-      newState = (history === null) ? defaultValues : JSON.parse(history)
+      newState = (history === null) ? defaultValues : { ...defaultValues, ...JSON.parse(history) }
   }
 
   localStorage.setItem('items', JSON.stringify(newState))
