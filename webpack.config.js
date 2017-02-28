@@ -13,7 +13,7 @@ function config (env = {}) {
     },
   	entry: [ './app/index.js' ],
   	output: {
-  		path: (__dirname + '/docs'),
+  		path: __dirname,
   		publicPath: '/',
   		filename: 'index.js'
   	},
@@ -25,7 +25,7 @@ function config (env = {}) {
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
             use: [ 'css-loader', 'sass-loader' ],
-            publicPath: '/docs'
+            publicPath: '/'
           })
         }
       ]
